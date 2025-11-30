@@ -1,0 +1,38 @@
+{
+  "Georgia": {
+    "themes": {
+      "Family & Separation": 469,
+      "Work & Labor": 390,
+      "Food & Sustenance": 237,
+      "Clothing & Material Life": 205,
+      "Housing & Living Conditions": 291,
+      "Religion & Spirituality": 189,
+      "Punishment & Violence": 140,
+      "Freedom & Emancipation": 186,
+      "Master & Slavery Relations": 478,
+      "Folklore & Supernatural": 61
+    },
+    "total_words": 50250,
+    "narrative_count": 5
+  },
+  "Florida": {
+    "themes": {},
+    "total_words": 0,
+    "narrative_count": 0
+  },
+  "Missouri": {
+    "themes": {},
+    "total_words": 0,
+    "narrative_count": 0
+  },
+  "Texas": {
+    "themes": {},
+    "total_words": 0,
+    "narrative_count": 0
+  },
+  "South Carolina": {
+    "themes": {},
+    "total_words": 0,
+    "narrative_count": 0
+  }
+}
