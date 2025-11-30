@@ -1,0 +1,42 @@
+{
+  "Georgia": {
+    "narrative_count": 5,
+    "total_words": 50250,
+    "avg_narrative_length": 10050.0,
+    "shortest_narrative": 1963,
+    "longest_narrative": 25967,
+    "total_people_interviewed": 5
+  },
+  "Florida": {
+    "narrative_count": 0,
+    "total_words": 0,
+    "avg_narrative_length": 0,
+    "shortest_narrative": 0,
+    "longest_narrative": 0,
+    "total_people_interviewed": 0
+  },
+  "Missouri": {
+    "narrative_count": 0,
+    "total_words": 0,
+    "avg_narrative_length": 0,
+    "shortest_narrative": 0,
+    "longest_narrative": 0,
+    "total_people_interviewed": 0
+  },
+  "Texas": {
+    "narrative_count": 0,
+    "total_words": 0,
+    "avg_narrative_length": 0,
+    "shortest_narrative": 0,
+    "longest_narrative": 0,
+    "total_people_interviewed": 0
+  },
+  "South Carolina": {
+    "narrative_count": 0,
+    "total_words": 0,
+    "avg_narrative_length": 0,
+    "shortest_narrative": 0,
+    "longest_narrative": 0,
+    "total_people_interviewed": 0
+  }
+}

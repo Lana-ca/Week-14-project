@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare States - WPA Slave Narratives</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-2.26.0.min.js"></script>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #2c3e50 !important;
+        }
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .content {
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+        .card {
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">WPA Slave Narratives</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="browse.html">Browse Narratives</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="compare.html">Compare States</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container content">
+        <div class="row mt-4">
+            <div class="col-12">
+                <h1>Comparative Analysis Across States</h1>
+                <p class="lead">Compare themes, folklore, and textual patterns across different states.</p>
+            </div>
+        </div>
+
+        <!-- Theme Distribution -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Theme Distribution Across States</h3>
+                        <p class="text-muted">Frequency of different thematic elements in narratives by state</p>
+                        <div id="themesChart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Folklore Analysis -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Folklore & Folk Tales by State</h3>
+                        <p class="text-muted">Distribution of folklore elements and supernatural references</p>
+                        <div id="folkloreChart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Folklore Examples -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Folklore Examples</h3>
+                        <p class="text-muted">Sample excerpts showing folklore and folk tales from different states</p>
+                        <div id="folkloreExamples" class="accordion"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparative Statistics -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Comparative Statistics</h3>
+                        <div id="statsChart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Words Comparison -->
+        <div class="row mt-4 mb-5">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Most Common Words by State</h3>
+                        <p class="text-muted">Top 20 most frequently used words (excluding common stop words)</p>
+                        <div id="wordFrequencies" class="row"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container text-center">
+            <p class="mb-0">WPA Federal Writers' Project Slave Narratives (1936-1938)</p>
+            <p class="mb-0"><small>Historical documents from Project Gutenberg</small></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let themesData = {};
+        let folkloreData = {};
+        let statsData = {};
+        let wordFreqData = {};
+
+        // Load all data
+        Promise.all([
+            fetch('data/themes.json').then(r => r.json()),
+            fetch('data/folklore.json').then(r => r.json()),
+            fetch('data/comparative_stats.json').then(r => r.json()),
+            fetch('data/word_frequencies.json').then(r => r.json())
+        ])
+        .then(([themes, folklore, stats, wordFreq]) => {
+            themesData = themes;
+            folkloreData = folklore;
+            statsData = stats;
+            wordFreqData = wordFreq;
+
+            createThemesChart();
+            createFolkloreChart();
+            createStatsChart();
+            displayFolkloreExamples();
+            displayWordFrequencies();
+        })
+        .catch(error => {
+            console.error('Error loading data:', error);
+            document.querySelector('.container').innerHTML += `
+                <div class="alert alert-warning mt-3">
+                    Unable to load analysis data. Please ensure you've run the analysis script first:
+                    <code>python src/analyze_narratives.py</code>
+                </div>
+            `;
+        });
+
+        function createThemesChart() {
+            const states = Object.keys(themesData);
+            const allThemes = new Set();
+
+            // Collect all unique themes
+            states.forEach(state => {
+                Object.keys(themesData[state].themes).forEach(theme => allThemes.add(theme));
+            });
+
+            const traces = [];
+            states.forEach(state => {
+                const themeValues = [];
+                const themeLabels = [];
+
+                Array.from(allThemes).forEach(theme => {
+                    const count = themesData[state].themes[theme] || 0;
+                    if (count > 0) {
+                        themeLabels.push(theme);
+                        themeValues.push(count);
+                    }
+                });
+
+                traces.push({
+                    x: themeLabels,
+                    y: themeValues,
+                    name: state,
+                    type: 'bar'
+                });
+            });
+
+            const layout = {
+                barmode: 'group',
+                height: 500,
+                xaxis: {
+                    tickangle: -45,
+                    automargin: true
+                },
+                yaxis: {
+                    title: 'Frequency'
+                },
+                legend: {
+                    orientation: 'h',
+                    y: -0.3
+                }
+            };
+
+            Plotly.newPlot('themesChart', traces, layout);
+        }
+
+        function createFolkloreChart() {
+            const states = Object.keys(folkloreData);
+            const traces = [];
+
+            states.forEach(state => {
+                const categories = Object.keys(folkloreData[state].folklore_counts);
+                const values = Object.values(folkloreData[state].folklore_counts);
+
+                traces.push({
+                    x: categories,
+                    y: values,
+                    name: state,
+                    type: 'bar'
+                });
+            });
+
+            const layout = {
+                barmode: 'group',
+                height: 400,
+                xaxis: {
+                    tickangle: -45,
+                    automargin: true
+                },
+                yaxis: {
+                    title: 'Frequency'
+                },
+                legend: {
+                    orientation: 'h',
+                    y: -0.3
+                }
+            };
+
+            Plotly.newPlot('folkloreChart', traces, layout);
+        }
+
+        function createStatsChart() {
+            const states = Object.keys(statsData);
+
+            const narrativeCountTrace = {
+                x: states,
+                y: states.map(s => statsData[s].narrative_count),
+                name: 'Number of Narratives',
+                type: 'bar',
+                marker: { color: '#3498db' }
+            };
+
+            const avgLengthTrace = {
+                x: states,
+                y: states.map(s => statsData[s].avg_narrative_length),
+                name: 'Avg. Narrative Length (words)',
+                type: 'bar',
+                marker: { color: '#e74c3c' },
+                yaxis: 'y2'
+            };
+
+            const layout = {
+                height: 400,
+                yaxis: {
+                    title: 'Number of Narratives',
+                    side: 'left'
+                },
+                yaxis2: {
+                    title: 'Avg. Words per Narrative',
+                    overlaying: 'y',
+                    side: 'right'
+                },
+                legend: {
+                    orientation: 'h',
+                    y: -0.2
+                }
+            };
+
+            Plotly.newPlot('statsChart', [narrativeCountTrace, avgLengthTrace], layout);
+        }
+
+        function displayFolkloreExamples() {
+            const container = document.getElementById('folkloreExamples');
+            let index = 0;
+
+            for (const [state, data] of Object.entries(folkloreData)) {
+                if (data.examples && Object.keys(data.examples).length > 0) {
+                    const accordionItem = document.createElement('div');
+                    accordionItem.className = 'accordion-item';
+
+                    let examplesHtml = '';
+                    for (const [category, examples] of Object.entries(data.examples)) {
+                        examplesHtml += `<h5 class="mt-3">${category}</h5>`;
+                        examples.slice(0, 3).forEach(example => {
+                            examplesHtml += `
+                                <div class="card mb-2">
+                                    <div class="card-body">
+                                        <h6 class="card-subtitle mb-2 text-muted">${example.name}</h6>
+                                        <p class="card-text"><em>"...${example.snippet}..."</em></p>
+                                    </div>
+                                </div>
+                            `;
+                        });
+                    }
+
+                    accordionItem.innerHTML = `
+                        <h2 class="accordion-header" id="heading${index}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse${index}">
+                                ${state} - ${Object.keys(data.examples).length} Folklore Categories
+                            </button>
+                        </h2>
+                        <div id="collapse${index}" class="accordion-collapse collapse"
+                             data-bs-parent="#folkloreExamples">
+                            <div class="accordion-body">
+                                ${examplesHtml}
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(accordionItem);
+                    index++;
+                }
+            }
+        }
+
+        function displayWordFrequencies() {
+            const container = document.getElementById('wordFrequencies');
+
+            for (const [state, words] of Object.entries(wordFreqData)) {
+                const col = document.createElement('div');
+                col.className = 'col-md-6 col-lg-4 mb-3';
+
+                let wordList = '<ol class="mb-0" style="column-count: 2; font-size: 0.9rem;">';
+                words.slice(0, 20).forEach(([word, count]) => {
+                    wordList += `<li>${word} <span class="text-muted">(${count})</span></li>`;
+                });
+                wordList += '</ol>';
+
+                col.innerHTML = `
+                    <h5>${state}</h5>
+                    <div class="card">
+                        <div class="card-body">
+                            ${wordList}
+                        </div>
+                    </div>
+                `;
+                container.appendChild(col);
+            }
+        }
+    </script>
+</body>
+</html>

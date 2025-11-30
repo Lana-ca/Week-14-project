@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Narratives - WPA Slave Narratives</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #2c3e50 !important;
+        }
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .content {
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+        .card {
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .narrative-card {
+            border-left: 4px solid #3498db;
+        }
+        .narrative-text {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">WPA Slave Narratives</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="browse.html">Browse Narratives</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="compare.html">Compare States</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container content">
+        <div class="row mt-4">
+            <div class="col-12">
+                <h1>Browse Narratives</h1>
+                <p class="lead">Explore individual slave narratives from the WPA collection.</p>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Filter Options</h5>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="stateFilter" class="form-label">State</label>
+                                <select class="form-select" id="stateFilter">
+                                    <option value="">All States</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="searchInput" class="form-label">Search by Name</label>
+                                <input type="text" class="form-control" id="searchInput" placeholder="Enter name...">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="sortSelect" class="form-label">Sort By</label>
+                                <select class="form-select" id="sortSelect">
+                                    <option value="name">Name (A-Z)</option>
+                                    <option value="length-desc">Length (Longest First)</option>
+                                    <option value="length-asc">Length (Shortest First)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-12">
+                <div id="narrativesContainer">
+                    <div class="text-center">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container text-center">
+            <p class="mb-0">WPA Federal Writers' Project Slave Narratives (1936-1938)</p>
+            <p class="mb-0"><small>Historical documents from Project Gutenberg</small></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let narrativesData = {};
+        let displayedNarratives = [];
+
+        // Load narratives data
+        fetch('data/narratives_full.json')
+            .then(response => response.json())
+            .then(data => {
+                narrativesData = data;
+
+                // Populate state filter
+                const stateFilter = document.getElementById('stateFilter');
+                Object.keys(data).forEach(state => {
+                    const option = document.createElement('option');
+                    option.value = state;
+                    option.textContent = state;
+                    stateFilter.appendChild(option);
+                });
+
+                // Initial display
+                filterAndDisplayNarratives();
+            })
+            .catch(error => {
+                console.error('Error loading narratives:', error);
+                document.getElementById('narrativesContainer').innerHTML = `
+                    <div class="alert alert-warning">
+                        Unable to load narratives. Please ensure you've run the analysis script first:
+                        <code>python src/analyze_narratives.py</code>
+                    </div>
+                `;
+            });
+
+        function getAllNarratives() {
+            const all = [];
+            for (const [state, data] of Object.entries(narrativesData)) {
+                if (data.narratives) {
+                    data.narratives.forEach(narrative => {
+                        all.push({
+                            ...narrative,
+                            state: state
+                        });
+                    });
+                }
+            }
+            return all;
+        }
+
+        function filterAndDisplayNarratives() {
+            const stateFilter = document.getElementById('stateFilter').value;
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const sortBy = document.getElementById('sortSelect').value;
+
+            let filtered = getAllNarratives();
+
+            // Apply state filter
+            if (stateFilter) {
+                filtered = filtered.filter(n => n.state === stateFilter);
+            }
+
+            // Apply search filter
+            if (searchTerm) {
+                filtered = filtered.filter(n => n.name.toLowerCase().includes(searchTerm));
+            }
+
+            // Apply sorting
+            if (sortBy === 'name') {
+                filtered.sort((a, b) => a.name.localeCompare(b.name));
+            } else if (sortBy === 'length-desc') {
+                filtered.sort((a, b) => b.word_count - a.word_count);
+            } else if (sortBy === 'length-asc') {
+                filtered.sort((a, b) => a.word_count - b.word_count);
+            }
+
+            displayNarratives(filtered);
+        }
+
+        function displayNarratives(narratives) {
+            const container = document.getElementById('narrativesContainer');
+
+            if (narratives.length === 0) {
+                container.innerHTML = `
+                    <div class="alert alert-info">
+                        No narratives found matching your filters.
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = `
+                <div class="alert alert-success">
+                    Found ${narratives.length} narrative${narratives.length !== 1 ? 's' : ''}
+                </div>
+            `;
+
+            narratives.forEach((narrative, index) => {
+                const card = document.createElement('div');
+                card.className = 'card narrative-card mb-3';
+                card.innerHTML = `
+                    <div class="card-body">
+                        <h4 class="card-title">${narrative.name}</h4>
+                        <p class="text-muted mb-2">
+                            <strong>${narrative.state}</strong> |
+                            Age: ${narrative.age} |
+                            ${narrative.address} |
+                            ${narrative.word_count.toLocaleString()} words
+                        </p>
+                        <div class="narrative-text">
+                            ${narrative.text.substring(0, 800)}${narrative.text.length > 800 ? '...' : ''}
+                        </div>
+                        ${narrative.text.length > 800 ? `
+                            <button class="btn btn-sm btn-outline-primary mt-2" onclick="showFullText(${index})">
+                                Read More
+                            </button>
+                        ` : ''}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            displayedNarratives = narratives;
+        }
+
+        function showFullText(index) {
+            const narrative = displayedNarratives[index];
+            const modalHtml = `
+                <div class="modal fade" id="narrativeModal" tabindex="-1">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">${narrative.name}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-muted">
+                                    <strong>${narrative.state}</strong> | Age: ${narrative.age} | ${narrative.address}
+                                </p>
+                                <div class="narrative-text">
+                                    ${narrative.text}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Remove existing modal if any
+            const existingModal = document.getElementById('narrativeModal');
+            if (existingModal) {
+                existingModal.remove();
+            }
+
+            // Add new modal
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+
+            // Show modal
+            const modal = new bootstrap.Modal(document.getElementById('narrativeModal'));
+            modal.show();
+        }
+
+        // Event listeners
+        document.getElementById('stateFilter').addEventListener('change', filterAndDisplayNarratives);
+        document.getElementById('searchInput').addEventListener('input', filterAndDisplayNarratives);
+        document.getElementById('sortSelect').addEventListener('change', filterAndDisplayNarratives);
+    </script>
+</body>
+</html>
