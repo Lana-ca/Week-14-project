@@ -8,35 +8,35 @@
     "total_people_interviewed": 5
   },
   "Florida": {
-    "narrative_count": 0,
-    "total_words": 0,
-    "avg_narrative_length": 0,
-    "shortest_narrative": 0,
-    "longest_narrative": 0,
-    "total_people_interviewed": 0
+    "narrative_count": 27,
+    "total_words": 40889,
+    "avg_narrative_length": 1514.4074074074074,
+    "shortest_narrative": 296,
+    "longest_narrative": 4204,
+    "total_people_interviewed": 27
   },
   "Missouri": {
-    "narrative_count": 0,
-    "total_words": 0,
-    "avg_narrative_length": 0,
-    "shortest_narrative": 0,
-    "longest_narrative": 0,
-    "total_people_interviewed": 0
+    "narrative_count": 37,
+    "total_words": 55180,
+    "avg_narrative_length": 1491.3513513513512,
+    "shortest_narrative": 121,
+    "longest_narrative": 5571,
+    "total_people_interviewed": 37
   },
   "Texas": {
-    "narrative_count": 0,
-    "total_words": 0,
-    "avg_narrative_length": 0,
-    "shortest_narrative": 0,
-    "longest_narrative": 0,
-    "total_people_interviewed": 0
+    "narrative_count": 23,
+    "total_words": 32464,
+    "avg_narrative_length": 1411.4782608695652,
+    "shortest_narrative": 381,
+    "longest_narrative": 6299,
+    "total_people_interviewed": 23
   },
   "South Carolina": {
-    "narrative_count": 0,
-    "total_words": 0,
-    "avg_narrative_length": 0,
-    "shortest_narrative": 0,
-    "longest_narrative": 0,
-    "total_people_interviewed": 0
+    "narrative_count": 7,
+    "total_words": 21140,
+    "avg_narrative_length": 3020.0,
+    "shortest_narrative": 995,
+    "longest_narrative": 6982,
+    "total_people_interviewed": 7
   }
 }

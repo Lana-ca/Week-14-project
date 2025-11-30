@@ -144,19 +144,547 @@
     }
   },
   "Florida": {
-    "folklore_counts": {},
-    "examples": {}
+    "folklore_counts": {
+      "Ghost Stories": 17,
+      "Conjure & Magic": 11,
+      "Supernatural Beliefs": 8,
+      "Folk Medicine": 58,
+      "Stories & Tales": 198,
+      "Songs & Music": 11
+    },
+    "examples": {
+      "Ghost Stories": [
+        {
+          "name": "JOSEPHINE ANDERSON\n\n\n\n\nHANTS",
+          "snippet": "My stepfather went to work for a turpentine man, makin\nbarrels, an he work at dat job till he drop dead in de camp. I reckon he\nmusta had heart disease.\n\n\n\"I doan recleck ever seein my mammy wear shoes."
+        },
+        {
+          "name": "JOSEPHINE ANDERSON\n\n\n\n\nHANTS",
+          "snippet": "grab de plate an 'Bang'--bout four guns go off all at oncet, an\nMister Green fall to de floor plum dead shot through de head.\n\n\n\"Fore we knowed who done it, de sheriff an some more men jump down from\nde"
+        },
+        {
+          "name": "JOSEPHINE ANDERSON\n\n\n\n\nHANTS",
+          "snippet": "good thout de magic words, an I doan know dem. You take a little pinch\no' dried snake skin an some graveyard dirt, an some red pepper an a\nlock o' your hair wrapped roun some black rooster feathers. Den you s"
+        },
+        {
+          "name": "SAMUEL SIMEON ANDREWS",
+          "snippet": "aid 'no he isn't on me but he's down\nthere.' Pretty soon news came that Reverend Hodges had dropped dead.\nDeath had come for someone and would not leave without them. I was weak\nand he tried me first. Rev"
+        },
+        {
+          "name": "SAMUEL SIMEON ANDREWS",
+          "snippet": "ome on boys,\"\neveryone knows it is \"Parson\" Andrews.\n\n\n\"Parson\" has had two wives, both of whom are dead, and is the father of\neight children: Willis (deceased) Johnny, Sebron Reece of Martin,\nTennessee,"
+        }
+      ],
+      "Conjure & Magic": [
+        {
+          "name": "JOSEPHINE ANDERSON\n\n\n\n\nHANTS",
+          "snippet": "ut em den to jes\n'blieve'--I been _rid_ by em. Right here in dis house. You ain never\nbeen rid by a witch? Well, you mighty lucky. Dey come in de night,\nginnerly soon after you drop off to sleep. Dey put a"
+        },
+        {
+          "name": "JOSEPHINE ANDERSON\n\n\n\n\nHANTS",
+          "snippet": "Den dey ride you back home an into your bed. When you hit de bed you\njump an grab de kivers, an de witch be gone, like dat. But you know you\nbeen rid mighty hard, cause you all wet wid sweat, an you feel"
+        },
+        {
+          "name": "JOSEPHINE ANDERSON\n\n\n\n\nHANTS",
+          "snippet": "jus been dreamin, counta de blood stop circulatin in\nyaur back. Shucks! Dey ain never been rid by a witch, or dey ain sayin\ndat.\n\n\n\"Old witch docter, he want ten dollers for a piece of string, what he\nsay"
+        },
+        {
+          "name": "JOSEPHINE ANDERSON\n\n\n\n\nHANTS",
+          "snippet": "op circulatin in\nyaur back. Shucks! Dey ain never been rid by a witch, or dey ain sayin\ndat.\n\n\n\"Old witch docter, he want ten dollers for a piece of string, what he\nsay some kinda charm words over. Tells m"
+        },
+        {
+          "name": "JOSEPHINE ANDERSON\n\n\n\n\nHANTS",
+          "snippet": "for a piece of string, what he\nsay some kinda charm words over. Tells me to make a image o' dat old\nwitch outa dough, an tie dat string roun its neck; den when I bake it in\nde oven, it swell up an de magic"
+        }
+      ],
+      "Supernatural Beliefs": [
+        {
+          "name": "JOSEPHINE ANDERSON\n\n\n\n\nHANTS",
+          "snippet": "yin a broom on de\nfloor an jumpin over it. Dat seals de marriage, an at de same time\nbrings em good luck.\n\n\n\"Ya see brooms keeps hants away. When mean folks dies, de old debbil\nsometimes doan want em down"
+        },
+        {
+          "name": "FRANK BERRY",
+          "snippet": "ement\nthe very small income he now derives from what is left of what was at\none time a considerable fortune."
+        },
+        {
+          "name": "PATIENCE CAMPBELL",
+          "snippet": "in northern\nforces and fight for the thing they desired most, freedom. When freedom\nwas no longer a dream, but a reality, the Merritts started life on their\nown as farmers. Twelve-year old Patience entered"
+        },
+        {
+          "name": "HARRIETT GRESHAM",
+          "snippet": "h credence herself. Prior to the Civil War, there were hordes of ants\nand everyone said this was an omen of war, and there was a war.\n\n\nShe was married when schools were set up for Negroes, but had no tim"
+        },
+        {
+          "name": "REFERENCE",
+          "snippet": "me cases. He reads it in the palms of\nthose who will believe in him; he determines the good and bad luck;\nfreedom from sickness; success in love and other benefits it will bring\nfrom the use of charms, ro"
+        }
+      ],
+      "Folk Medicine": [
+        {
+          "name": "JOSEPHINE ANDERSON\n\n\n\n\nHANTS",
+          "snippet": "comes true.\n\n\n\"Use to worry Teeny right smart, seein sperrits day an night. My husban\nsay he gonna cure her, so he taken a grain o' corn an put it in a bottle\nin Teeny's bedroom over night. Den he plante"
+        },
+        {
+          "name": "SAMUEL SIMEON ANDREWS",
+          "snippet": "to travel over\nthe United States again but that the school keeps him too close.\n\n\n\"I had been very sick but took no medicine; my wife went out to visit\nSister Nancy--shortly afterwards I heard what sound"
+        },
+        {
+          "name": "SAMUEL SIMEON ANDREWS",
+          "snippet": "floor of the smokehouse and\nwater poured over it to get the salt drippings for seasoning; that most\nmedicine consisted of boiled roots; when thread and cloth were dyed with\nthe dye obtained from maple bark; w"
+        },
+        {
+          "name": "SAMUEL SIMEON ANDREWS",
+          "snippet": "he United States again but that the school keeps him too close.\n\n\n\"I had been very sick but took no medicine; my wife went out to visit\nSister Nancy--shortly afterwards I heard what sounded like walking, and"
+        },
+        {
+          "name": "SAMUEL SIMEON ANDREWS",
+          "snippet": "Lou Rivers of Macon, Georgia, and Augustus\nsomewhere-at-sea.\n\n\n\"Parson\" does not believe in taking medicine, but makes a liniment with\nwhich he rubs himself. He attributes his long life to his sense of\n\"havi"
+        }
+      ],
+      "Stories & Tales": [
+        {
+          "name": "JOSEPHINE ANDERSON\n\n\n\n\nHANTS",
+          "snippet": "\"I kaint tell nothin bout slavery times cept what I heared folks talk\nabout. I was too young to remember much but"
+        },
+        {
+          "name": "JOSEPHINE ANDERSON\n\n\n\n\nHANTS",
+          "snippet": "um\nwhat be over some babies' faces when dey is borned. Folks borned wid a\ncaul can see sperrits, an tell whas gonna happen fore it comes true.\n\n\n\"Use to worry Teeny right smart, seein sperrits day an nigh"
+        },
+        {
+          "name": "JOSEPHINE ANDERSON\n\n\n\n\nHANTS",
+          "snippet": "ks roun da place. When it was growin good, he put leaf-mold\nroun de stalk, an watch it ever day, an tell us don't _nobody_ touch de\nstalk. It raise three big ears o' corn, an when dey was good roastin\nsiz"
+        },
+        {
+          "name": "JOSEPHINE ANDERSON\n\n\n\n\nHANTS",
+          "snippet": "lk. It raise three big ears o' corn, an when dey was good roastin\nsize he pick em off an cook em an tell Teeny eat ever grain offn all\nthree cobs. He watch her while she done it, an she ain never been\nwor"
+        },
+        {
+          "name": "JOSEPHINE ANDERSON\n\n\n\n\nHANTS",
+          "snippet": "we knowed who done it, de sheriff an some more men jump down from\nde loft, where dey bean hidin an tell us quit hollerin an doan be\nscairt. Dis man be a bad deeper--you know, one o' them outlaws what\nkil"
+        }
+      ],
+      "Songs & Music": [
+        {
+          "name": "FLORIDA FOLKLORE\nSLAVE CUSTOMS AND ANECDOTES\n\n\nMARY MINUS BIDDIE",
+          "snippet": "om Africa to Port Royal, South Carolina. My\ngrandmother used to hold up her hand and look at it and sing out of her\nhand. She'd make them up as she would look at her hand. She sang in\nGeechee and also mad"
+        },
+        {
+          "name": "DOUGLAS DORSEY",
+          "snippet": "o their cabins and after\npreparing and eating of their evening meal they gathered around a cabin\nto sing and moan songs seasoned with African melody. Then to the tune of\nan old fiddle they danced a dance"
+        },
+        {
+          "name": "DOUGLAS DORSEY",
+          "snippet": "ered around a cabin\nto sing and moan songs seasoned with African melody. Then to the tune of\nan old fiddle they danced a dance called the \"Green Corn Dance\" and \"Cut\nthe Pigeon wing.\" Sometimes the young me"
+        },
+        {
+          "name": "DOUGLAS DORSEY",
+          "snippet": "o sing and moan songs seasoned with African melody. Then to the tune of\nan old fiddle they danced a dance called the \"Green Corn Dance\" and \"Cut\nthe Pigeon wing.\" Sometimes the young men on the plantation"
+        },
+        {
+          "name": "DOUGLAS DORSEY",
+          "snippet": "d with African melody. Then to the tune of\nan old fiddle they danced a dance called the \"Green Corn Dance\" and \"Cut\nthe Pigeon wing.\" Sometimes the young men on the plantation would slip\naway to visit a gi"
+        }
+      ]
+    }
   },
   "Missouri": {
-    "folklore_counts": {},
-    "examples": {}
+    "folklore_counts": {
+      "Ghost Stories": 41,
+      "Folk Medicine": 55,
+      "Stories & Tales": 285,
+      "Songs & Music": 30,
+      "Supernatural Beliefs": 6,
+      "Conjure & Magic": 8
+    },
+    "examples": {
+      "Ghost Stories": [
+        {
+          "name": "James Monroe Abbot",
+          "snippet": "tood dere watchin' it. It cum up an followed de' fence to\nde road. I watched to see did it go to de graveyard, an' shure nuf it\ndid. It meant sumpin' but I don' know whut. An den one day, 'bout noon I\nseed sum"
+        },
+        {
+          "name": "Hannah Allen",
+          "snippet": "rry Newberry has a mill and he give us de lumber to build\ndis house.\n\n\n\"We have a lot in de colored graveyard. I have no insurance but Mr.\nAllen has some kind of insurance, so if he gets hurt traveling he will"
+        },
+        {
+          "name": "Charles Gabriel Anderson",
+          "snippet": "ch\neight years in East St. Louis, Ill. I been married twice and am de\nfather of three children, all dead, and both wifes dead. I don't know\nhow long none of 'em been dead. My mother died while I was in de"
+        },
+        {
+          "name": "Charles Gabriel Anderson",
+          "snippet": "t St. Louis, Ill. I been married twice and am de\nfather of three children, all dead, and both wifes dead. I don't know\nhow long none of 'em been dead. My mother died while I was in de army\nand my father g"
+        },
+        {
+          "name": "Charles Gabriel Anderson",
+          "snippet": "de\nfather of three children, all dead, and both wifes dead. I don't know\nhow long none of 'em been dead. My mother died while I was in de army\nand my father got drowned before I was born. I only had two"
+        }
+      ],
+      "Folk Medicine": [
+        {
+          "name": "James Monroe Abbot",
+          "snippet": "les fum Seventy Six Landing.\n\n\n\"When Ole Mastuh died, dat wuz de fathuh ob young Mastuh Joe--he war\nsick a long time. Dar he lay fum openin' o' spring, 'bout de time flies\ncum, 'til wheat-sowin' time in d"
+        },
+        {
+          "name": "Hannah Allen",
+          "snippet": "ss\nwould sing and pray while she washed dishes, milked de cows, and made\nbiscuits. So dey called de doctor and he come and said dat God had got a\nhold on her.\n\n\n\"One of de darkies had a baby out in de field"
+        },
+        {
+          "name": "Hannah Allen",
+          "snippet": "a\nhold on her.\n\n\n\"One of de darkies had a baby out in de field about eleven o'clock one\nmorning. De doctor come out there to her. She was sick a long time\n'cause she got too hot before de chile was born. Af"
+        },
+        {
+          "name": "Hannah Allen",
+          "snippet": "nsion about two years and we was on relief for\ntwo or three years before dat. Our biggest debt is a doctor bill of\nabout $60.\n\n\n\"Some of de colored folks is better off now and some is worser. De young\nrace"
+        },
+        {
+          "name": "Hannah Allen",
+          "snippet": "ouis, two white ladies\nsaw de baby who was so sick and dey went out and got some clothes for\nit. De doctor come on de boat and vaccinated me. De sores on the baby\nwere as big as half dollars.\n\n\n\"Den after w"
+        }
+      ],
+      "Stories & Tales": [
+        {
+          "name": "James Monroe Abbot",
+          "snippet": "de--I meets ma sister\nan I says: 'By God, he's daid.' I didden know I wus cussin', she say 'I\ngonna tell Muthuh on you,' but I's so glad to be out, I runs till I meet\nUncle Rube an' I says, 'By God, he's"
+        },
+        {
+          "name": "James Monroe Abbot",
+          "snippet": "maht but\nhe tells her to swallow dat tobbaccy she got in huh mouth. She don' pay\nhim no mind an' he tell her agin. Den she say, 'You chewing tobaccy?\nWhyn't yuh swaller dat?' Dat make him mad and he take"
+        },
+        {
+          "name": "James Monroe Abbot",
+          "snippet": "my\nbresh ud fall on he's face, den he'd take he's stick an' whack me a few\nacross de haid an' he'd say, 'Now I dare you to cry.' I cried, but he\ndidden see me do it.\n\n\n\"But at las' he died. Jane came in"
+        },
+        {
+          "name": "James Monroe Abbot",
+          "snippet": "came in an' said, 'He's daid. You can go out\nto play now James.' She ustah come in to Ole Mastuh an say, 'Why don'\nyou let him go out tuh play an' let someone else stan' here?' But Ole\nMastuh say, 'No! I"
+        },
+        {
+          "name": "James Monroe Abbot",
+          "snippet": "stuh an say, 'Why don'\nyou let him go out tuh play an' let someone else stan' here?' But Ole\nMastuh say, 'No! I want James.' So now I runs outside--I meets ma sister\nan I says: 'By God, he's daid.' I did"
+        }
+      ],
+      "Songs & Music": [
+        {
+          "name": "Hannah Allen",
+          "snippet": "colored church finally\nmade de boss and his whole family get religion. De old white mistress\nwould sing and pray while she washed dishes, milked de cows, and made\nbiscuits. So dey called de doctor and he"
+        },
+        {
+          "name": "Hannah Allen",
+          "snippet": "s dig trenches 'cross de road and tie grape vines over it. Den have\nde darkies go up on de hill and sing corn songs. Den de nightriders come\na-rushing and sometimes dey would get four or five whites in th"
+        },
+        {
+          "name": "Charles Gabriel Anderson",
+          "snippet": "ver bothered me none 'cause I\nstayed up north out of dere reach.\n\n\n\"I 'member de old slaves used to sing: 'Amazing Grace How Sweet De\nSound'; 'I want to be a Soldier, Since de Lord has set me Free';\n'Figh"
+        },
+        {
+          "name": "Charles Gabriel Anderson",
+          "snippet": "me in holiness in Elder Jones, Church of God in\nChrist on Kennerly Avenue. I pastored the Macedonia Spiritual Church\neight years in East St. Louis, Ill. I been married twice and am de\nfather of three children,"
+        },
+        {
+          "name": "William Black",
+          "snippet": "round in de fields.\n\n\n\"In de evening when de work was done we would sit 'round and play\nmarbles and sing songs. We made our songs up as we went along. Sometimes\ndere would be a corn shuckin' and dat is wh"
+        }
+      ],
+      "Supernatural Beliefs": [
+        {
+          "name": "William Black",
+          "snippet": "y we will be as good and dey will be glad to have us 'round\ndem more. Just 'cause we is black is no sign that we ain't good niggers.\n\n\n\"I don't like de way de younger generation is doin'. As my neighbors"
+        },
+        {
+          "name": "Betty Brown",
+          "snippet": "h don' believe in none of dat.\nNow you is tryin' to call up de devil. But wait! Ah kin tell you one\nsign dat ah knows is true. If de dog jes' lays outside de do' sleepin'\nan' has his haid inside de do', y"
+        },
+        {
+          "name": "Joe Casey",
+          "snippet": "_Sold Slave, Ill Luck Followed_\n\n\n\"I did not get to see my daddy long. He served in de first of de war and\ncome home sick"
+        },
+        {
+          "name": "Joe Casey",
+          "snippet": "asey said if he had 100 niggers he would never sell another one. He\nsaid he never had any more good luck since he sold John. Losing his\nchildren was his bad luck.\n\n\n\"Before freedom we had our own house an"
+        },
+        {
+          "name": "Joe Casey",
+          "snippet": "er one. He\nsaid he never had any more good luck since he sold John. Losing his\nchildren was his bad luck.\n\n\n\"Before freedom we had our own house and stayed here after freedom. My\nmaster said, 'Well, Joe y"
+        }
+      ],
+      "Conjure & Magic": [
+        {
+          "name": "George Bollinger",
+          "snippet": "write. I don't know whar he learned it. An'\nhe had de power, my daddy did. He cud break a 'Hoodoo' spell, an' he cud\ntell things dat happened wen he diden see it--If one a' de folks went to\ntown he cud te"
+        },
+        {
+          "name": "Annie Bridges",
+          "snippet": "lowing streams,\n    I love the evening breeze,\n    I love to go to school.\n\n\n    To read, write and spell\n    I love my teacher's smile again\n    And get my lessons well.\"\n\n\n(Following is a speech given as"
+        },
+        {
+          "name": "Lula Chambers",
+          "snippet": "'cause I\ndidn't have none. If I had my studyin' cap on, and hadn't just got over\ndis terrible sick spell, I could think of lots of things to tell you,\nbut I can't now. Right after de war dey sent colored"
+        },
+        {
+          "name": "Mary Divine",
+          "snippet": "and worked\nin de nut factory five years. I like to sew and do general housework. I\nread, write and spell a little but not enough to speak about. I know dis\nyoung generation's got a mighty fine chance if d"
+        },
+        {
+          "name": "Dave Harper",
+          "snippet": "trees.\"\n\n\nDave had apparently studied about the voodoo doctors and their wiles for\na question as to conjure doctors brought a quick response:\n\n\n\"We call dem 'two headed Negroes'. You know dat if he could do"
+        }
+      ]
+    }
   },
   "Texas": {
-    "folklore_counts": {},
-    "examples": {}
+    "folklore_counts": {
+      "Ghost Stories": 22,
+      "Songs & Music": 30,
+      "Stories & Tales": 191,
+      "Folk Medicine": 18,
+      "Supernatural Beliefs": 4,
+      "Conjure & Magic": 3
+    },
+    "examples": {
+      "Ghost Stories": [
+        {
+          "name": "Cinto Lewis",
+          "snippet": "ria and sometimes to Columbia.\n\n\n\"Yes, suh, I been here a long time, long time. All my own stuff is dead\nnow, I guess. I got grandchillen in Galveston, I think, but all my own\nstuff is dead.\""
+        },
+        {
+          "name": "Cinto Lewis",
+          "snippet": "y own stuff is dead\nnow, I guess. I got grandchillen in Galveston, I think, but all my own\nstuff is dead.\""
+        },
+        {
+          "name": "Henry Lewis",
+          "snippet": "hunerd niggers ain't gwine live dat long.\n\n\n\"I didn't had no chillen by my first wife and she been dead 'bout 70\nyear now. My last wife name' Charlotte and she been dead 22 year and us\nhave 16 chillen. D"
+        },
+        {
+          "name": "Henry Lewis",
+          "snippet": "len by my first wife and she been dead 'bout 70\nyear now. My last wife name' Charlotte and she been dead 22 year and us\nhave 16 chillen. Dey six gals and ten boys and ten am livin' now. Mos'\nof dem am too"
+        },
+        {
+          "name": "Lucy Lewis",
+          "snippet": "nine head grandchillen down in Galveston, but dey\ndon't write or nothin'. All our own children are dead. Dey was Lottie\nand Louisa and Alice. Dey was John, too, but he was so little and\nscrawny he die wh"
+        }
+      ],
+      "Songs & Music": [
+        {
+          "name": "Cinto Lewis",
+          "snippet": "don't give 'em no\nChristmas sneak over and eat it all up. Sometimes we have dances, and\nI'd play de fiddle for white folks and cullud folks both. I'd play,\n'Young Girl, Old Girl', 'High Heel Shoes,' and 'Ca"
+        },
+        {
+          "name": "Hagar Lewis",
+          "snippet": "nd I up\non the oak patch fence all the time.\n\n\n\"We'd watch the doodle bugs build their houses. We'd sing, 'Doodle,\nDoodle, your house burned down.' Those things would come up out of their\nholes just a-sha"
+        },
+        {
+          "name": "Hagar Lewis",
+          "snippet": "loose Miss Mary was training me and sister to do\nhandwork, knittin' and such. Mama wouldn't let us dance, didn't want any\nrough children. Miss Mary'd say, when I'd get sleepy, 'Owl eyes, ain't\nyou sleepy?"
+        },
+        {
+          "name": "Henry Lewis",
+          "snippet": "knees. Us have church-house and de white folks go in de mornin'\nand us go after dinner. Us used to sing:\n\n\n    \"'My knee bones achin',\n    My body's rackin' with pain,\n    I calls myself de chile of Gawd"
+        },
+        {
+          "name": "Lucy Lewis",
+          "snippet": ".'\n\n\n    \"'Fare you well, Miss Nancy Hawkins,\n    High heel shoes and calico stockin's.'\n\n\n\"I can't sing now from de time I lost my teeth with de Black John fever.\nWhen I git dat fever, my missy told me n"
+        }
+      ],
+      "Stories & Tales": [
+        {
+          "name": "Cinto Lewis",
+          "snippet": "th some\nothers. We is slippin' 'long quiet like and a paddle roller jump out\nfrom behin' a bush and say, 'Let's see your pass.' We didn't have none\nbut I has a piece of paper and I gives it to him and he"
+        },
+        {
+          "name": "Hagar Lewis",
+          "snippet": "s to death with oxen.\nFor stealin' or somethin'. I can't say we were treated bad, 'cause I'd\ntell a story. I've always been treated good by whites, but many of the\nniggers was killed. They'd say bad words"
+        },
+        {
+          "name": "Hagar Lewis",
+          "snippet": "niggers to death with oxen.\nFor stealin' or somethin'. I can't say we were treated bad, 'cause I'd\ntell a story. I've always been treated good by whites, but many of the\nniggers was killed. They'd say ba"
+        },
+        {
+          "name": "Hagar Lewis",
+          "snippet": "o put their slaves in. They'd carry 'em bread and water once a day.\nI'se afraid of the hole, they'd tell me the devil was in that hole.\n\n\n\n\n[Illustration: _Hagar Lewis_]\n\n\n\n\n\"We set traps for 'possum, coo"
+        },
+        {
+          "name": "Hagar Lewis",
+          "snippet": "ted us just like\nwe were her children. We had very strict leaders, my mother and Missus\nMary. She'd say, 'Mammy Lize (my mother), 'you'll have to come and whop\nOscar and Hagar, they's fightin!' Mammy Liz"
+        }
+      ],
+      "Folk Medicine": [
+        {
+          "name": "Hagar Lewis",
+          "snippet": "ohn'd say, 'What's the matter\nnow?' They'd say, 'I'se hongry.' He'd say, 'Come in and git it.' He'd\ncure lots of meat, for we'd hear 'em hollerin' at night when they'd beat\nthe pore niggers for beggin' or"
+        },
+        {
+          "name": "Henry Lewis",
+          "snippet": "s'\nof dem am too old to work now. I stays with Ada, here, and she got a\ngif'. She know what kind of herb am good for medicine for diff'rent\nailments. She born with a veil over de face and am wise to dem t"
+        },
+        {
+          "name": "Henry Lewis",
+          "snippet": "old to work now. I stays with Ada, here, and she got a\ngif'. She know what kind of herb am good for medicine for diff'rent\nailments. She born with a veil over de face and am wise to dem things.\nDey's de fever"
+        },
+        {
+          "name": "Louis Love",
+          "snippet": "' try to teach us readin' and writin', but Miss Mary read de\nBible to us every Sunday. Iffen us git sick dey git ol Dr. Haynes or Dr.\nPerkins.\n\n\n\"When us chillun, we plays 'Town Ball' and marbles. Mother'"
+        },
+        {
+          "name": "Adeline Marshall",
+          "snippet": "scape he mis'ry!\n\n\n\"We works every day 'cept Sunday and has to do our washin' den. Does\nanybody git sick week days, he has to work Sunday to make it up. When we\ncomes in at night we has to go right to bed"
+        }
+      ],
+      "Supernatural Beliefs": [
+        {
+          "name": "Henry Lewis",
+          "snippet": "in' in oil wells now. Washington Lewis,\ndat my daddy, he have 129 acres dere. De white folks say to sign de\npaper to let dem put de well on it and dey give us $50.00 and us sign\ndat paper and dey have de"
+        },
+        {
+          "name": "Henry Lewis",
+          "snippet": "ere. De white folks say to sign de\npaper to let dem put de well on it and dey give us $50.00 and us sign\ndat paper and dey have de land.\n\n\n\"I marries in slavery time, when I's 'bout 22 year old. My first"
+        },
+        {
+          "name": "Annie Little",
+          "snippet": "e band am playin' Dixie. Old Alex seed hisself ridin' he li'l roan\npony by Old Massa's side. Den he dream o' after de battle when he look\nfor Old Massa and finds him and he hoss lyin' side by side, done go"
+        },
+        {
+          "name": "Annie Little",
+          "snippet": "p up de cracks and sew up de seams,\n    De booger man never shall cotch you.\n    O, go to sleep and dream sweet dreams,\n    De booger man never shall cotch you.\n\n\n    \"De river run wide, de river run deep,"
+        }
+      ],
+      "Conjure & Magic": [
+        {
+          "name": "Louis Love",
+          "snippet": "ot\ngit up plenty wood. 'Well,' old Charlie say, 'wood was short and 'fore I\ncould git more dis col' spell come and it too awful col' to git wood.'\nMarster say, 'You keep plenty wood or I gwinter sell you t"
+        },
+        {
+          "name": "Adeline Marshall",
+          "snippet": "e to Houston. Dat\n'fore de 1900 storm.\n\n\n\"I tells folks when dat storm comin'. I ain't 'lieve in no witch doin's,\nbut some way I knows when dat storm comin'. Dey laughs at dis old\nnigger, but it come and d"
+        },
+        {
+          "name": "La San Mire",
+          "snippet": "the fever. Des\nregulateurs (patent medicines). On nearly all plantations there were\n'traiteurs', (a charm-doctor, always a Negro).\n\n\n\"Noel we had the little cakes and special things to eat, but no\npresents"
+        }
+      ]
+    }
   },
   "South Carolina": {
-    "folklore_counts": {},
-    "examples": {}
+    "folklore_counts": {
+      "Ghost Stories": 15,
+      "Conjure & Magic": 2,
+      "Folk Medicine": 38,
+      "Songs & Music": 15,
+      "Stories & Tales": 137,
+      "Supernatural Beliefs": 3
+    },
+    "examples": {
+      "Ghost Stories": [
+        {
+          "name": "MARY RAINES",
+          "snippet": "ap of 'em! I couldn't count 'em. My daddy run\nto de woods--he an' de other men. Dey ran right to de graveyard. Too\nmucha bush been dere. You couldn't see 'em. Stay in de woods three days.\n\n\n\"Dey went to my dad"
+        },
+        {
+          "name": "ISOM ROBERTS",
+          "snippet": "' happened. It most makes\nme tremble to talk to you 'bout it now. Providence, or some kind of\nmercy spirit, was sho' walkin' 'round dat plantation dat night. Sometime\nin de night it was whispered 'round amo"
+        },
+        {
+          "name": "ISOM ROBERTS",
+          "snippet": "all of them befo' de Yankees\nset them free and that they wouldn't need no money after they was done\ndead. All de slaves was mighty sad and troubled, all dat day, when old\nmarster made dat speech to them."
+        },
+        {
+          "name": "ISOM ROBERTS",
+          "snippet": "a plenty of\npersons dat has lost deir heads by not lettin' deir tongues rest.\nMarster Sam Louie is dead now. He can't disturb nobody in his grave. He\nhad his faults and done many things wrong but show me"
+        },
+        {
+          "name": "ISOM ROBERTS",
+          "snippet": "man I would have for a wife, 'cause\nI ain't gwine to find no woman Lucy's equal. All my chillun are dead,\n'cept two, and I don't know where they is.\n\n\n\"Does poor folks have any blessings and pleasure? Wel"
+        }
+      ],
+      "Conjure & Magic": [
+        {
+          "name": "MARY RAINES",
+          "snippet": "de garden, was potatoes, turnips,\ncollards and peas.\n\n\n\"Some of us had witches. One old woman was a witch, and she rode me one\nnight. I couldn't get up one night, had a ketching of my breath and\ncouldn't r"
+        },
+        {
+          "name": "BENJAMIN RUSSELL",
+          "snippet": "onion. Black pepper. Rather eat conch than any kind of\nnourishment out of salt water.\"\n\n\nMom Jane: \"Conjur? Wouldn't turn a hucks bread for 'em.\" (Give a\ncrust.)\n\n\nSabe: \"What God got lot out for a man he'l"
+        }
+      ],
+      "Folk Medicine": [
+        {
+          "name": "MARY RAINES",
+          "snippet": ", then sleep all day Sunday.\n\n\n\"When we got sick all the medicine we took was turpentine--dat would\ncure almost any ailment. Some of the niggers used Sampson snake weed or\npeach leaves boiled and tea drun"
+        },
+        {
+          "name": "MARY RAINES",
+          "snippet": "de hosses. Women folks cared for de\nmen. Dey brewed tea from sage leaves, sassafras root and other herb\nteas. Nobody never had no money to fetch no medicine from de towns wid,\nso dey made liniments and s"
+        },
+        {
+          "name": "MARY RAINES",
+          "snippet": "uld\ncure almost any ailment. Some of the niggers used Sampson snake weed or\npeach leaves boiled and tea drunk.\n\n\n\"I joined the church when I was 12 years old 'cause the other girls\njoined. I think everyb"
+        },
+        {
+          "name": "MARY RAINES",
+          "snippet": "d plenty no\nmore. De men got over it better dan de hosses. Women folks cared for de\nmen. Dey brewed tea from sage leaves, sassafras root and other herb\nteas. Nobody never had no money to fetch no medicin"
+        },
+        {
+          "name": "MARY RAINES",
+          "snippet": "Winnsboro, S.C., was dere a flyin' 'round my young mistress, Miss\nHarriett. Marse Riley was a young doctor, ridin' 'round wid saddlebags.\nWhile they was all settin' down to dinner, de young doctor have to g"
+        }
+      ],
+      "Songs & Music": [
+        {
+          "name": "MARY RAINES",
+          "snippet": "frican Methodist 'Piscopal Church. Too\nold to shout but de great day is comin', when I'll shout and sing to de\nmusic of dat harp of 10,000 strings up yonder. Oh! Won't dat be a joyful\nday, when dese old a"
+        },
+        {
+          "name": "MARY RAINES",
+          "snippet": "35. He is\nnever happier than when, in the center of a group of willing hearers, he\nis reciting in a sing-song tone the different periods of his life.\n\n\nHe attributes his longevity to the fact that he has"
+        },
+        {
+          "name": "MARY RAINES",
+          "snippet": "of ease,\nafter strugglin' most of my young life and gittin' no learnin' at\nschool, dat I sometimes sing my mammy's old song, runnin' somethin' lak\ndis:\n\n\n    'Possum up de simmon tree\n    Sparrow on de g"
+        },
+        {
+          "name": "MARY RAINES",
+          "snippet": "e is\nnever happier than when, in the center of a group of willing hearers, he\nis reciting in a sing-song tone the different periods of his life.\n\n\nHe attributes his longevity to the fact that he has never"
+        },
+        {
+          "name": "MARY RAINES",
+          "snippet": "gglin' most of my young life and gittin' no learnin' at\nschool, dat I sometimes sing my mammy's old song, runnin' somethin' lak\ndis:\n\n\n    'Possum up de simmon tree\n    Sparrow on de ground\n    'Possum th"
+        }
+      ],
+      "Stories & Tales": [
+        {
+          "name": "MARY RAINES",
+          "snippet": "=Stiles M. Scruggs=\n =Columbia, S.C.=\n\n\n=_THE POT OF GOLD._=\n\n\n\n\nMartha Richardson, who tells this story, lives at 924 Senate Street,\nColumbia, S.C. Her father was an Indian and her mother a mulatto. She"
+        },
+        {
+          "name": "MARY RAINES",
+          "snippet": "pt it and we all work on just de same and she buy these two\nlots on Senate Street. She build de two-story house here at 924, where\nyou sittin' now, and de cottage nex' door. She always had rent money\ncomin"
+        },
+        {
+          "name": "MARY RAINES",
+          "snippet": "y: 'Ain't her a good one? Must weigh\nten pounds. I's gwine to name dis baby for your mama, William. Tell her\nI name her, Mary, for her, but I 'spects some folks'll call her 'Polly',\njust lak they call you"
+        },
+        {
+          "name": "MARY RAINES",
+          "snippet": "d for many\ncomplaints, how to cover deir houses, and how to kill deir hogs,\n'cordin' to de moon. He tell us many times 'bout de great Catawba\nIndians, who make all deir own medicines and kill bears and dr"
+        },
+        {
+          "name": "MARY RAINES",
+          "snippet": "uch 'skimpin', to make ends meet at home, as we go\n'long dis way, dat I has never married. My mammy tell me: 'Honey, you a\npretty child. You grow up and marry a fine, lovin' man lak your daddy,\nand be hap"
+        }
+      ],
+      "Supernatural Beliefs": [
+        {
+          "name": "TOM ROSBORO",
+          "snippet": "One gang of soldier on de top been playing\ncard. I see um hold up de card as plain as day, when de luck fall right.\nThey going to face bullet, but yet they play card, and sing and laugh\nlike they in thei"
+        },
+        {
+          "name": "BENJAMIN RUSSELL",
+          "snippet": "ys holiday or\nsometimes a week. We had New Year's Day as a special day for working,\n'cause it was a sign if we worked good dat day, we would work good all\nde year. The white folks had corn-shuckings and c"
+        },
+        {
+          "name": "BENJAMIN RUSSELL",
+          "snippet": "plaintive 'whip-poor-will.' All the\nslaves on the place were frightened and awed and predicted bad luck to\nMaster Will. He took sick in war and died, just wasted away. He was\nbrought back in rags toward"
+        }
+      ]
+    }
   }
 }

@@ -16,23 +16,67 @@
     "narrative_count": 5
   },
   "Florida": {
-    "themes": {},
-    "total_words": 0,
-    "narrative_count": 0
+    "themes": {
+      "Family & Separation": 485,
+      "Work & Labor": 421,
+      "Food & Sustenance": 137,
+      "Clothing & Material Life": 134,
+      "Housing & Living Conditions": 156,
+      "Religion & Spirituality": 123,
+      "Punishment & Violence": 148,
+      "Freedom & Emancipation": 202,
+      "Master & Slavery Relations": 359,
+      "Folklore & Supernatural": 44
+    },
+    "total_words": 40889,
+    "narrative_count": 27
   },
   "Missouri": {
-    "themes": {},
-    "total_words": 0,
-    "narrative_count": 0
+    "themes": {
+      "Family & Separation": 721,
+      "Work & Labor": 318,
+      "Food & Sustenance": 118,
+      "Clothing & Material Life": 125,
+      "Housing & Living Conditions": 341,
+      "Religion & Spirituality": 187,
+      "Punishment & Violence": 137,
+      "Freedom & Emancipation": 240,
+      "Master & Slavery Relations": 429,
+      "Folklore & Supernatural": 37
+    },
+    "total_words": 55180,
+    "narrative_count": 37
   },
   "Texas": {
-    "themes": {},
-    "total_words": 0,
-    "narrative_count": 0
+    "themes": {
+      "Family & Separation": 267,
+      "Work & Labor": 199,
+      "Food & Sustenance": 152,
+      "Clothing & Material Life": 138,
+      "Housing & Living Conditions": 173,
+      "Religion & Spirituality": 83,
+      "Punishment & Violence": 103,
+      "Freedom & Emancipation": 164,
+      "Master & Slavery Relations": 335,
+      "Folklore & Supernatural": 11
+    },
+    "total_words": 32464,
+    "narrative_count": 23
   },
   "South Carolina": {
-    "themes": {},
-    "total_words": 0,
-    "narrative_count": 0
+    "themes": {
+      "Family & Separation": 171,
+      "Work & Labor": 199,
+      "Food & Sustenance": 117,
+      "Clothing & Material Life": 75,
+      "Housing & Living Conditions": 137,
+      "Religion & Spirituality": 85,
+      "Punishment & Violence": 44,
+      "Freedom & Emancipation": 115,
+      "Master & Slavery Relations": 212,
+      "Folklore & Supernatural": 23
+    },
+    "total_words": 21140,
+    "narrative_count": 7
   }
 }
