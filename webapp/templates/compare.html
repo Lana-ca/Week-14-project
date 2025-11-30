@@ -1,0 +1,266 @@
+{% extends "base.html" %}
+
+{% block title %}Compare States{% endblock %}
+
+{% block content %}
+<div class="row mt-4">
+    <div class="col-12">
+        <h1>Comparative Analysis Across States</h1>
+        <p class="lead">Compare themes, folklore, and textual patterns across different states.</p>
+    </div>
+</div>
+
+<!-- Theme Distribution -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h3>Theme Distribution Across States</h3>
+                <p class="text-muted">Frequency of different thematic elements in narratives by state</p>
+                <div id="themesChart"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Folklore Analysis -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h3>Folklore & Folk Tales by State</h3>
+                <p class="text-muted">Distribution of folklore elements and supernatural references</p>
+                <div id="folkloreChart"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Detailed Folklore Examples -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h3>Folklore Examples</h3>
+                <p class="text-muted">Sample excerpts showing folklore and folk tales from different states</p>
+
+                {% if folklore %}
+                <div class="accordion" id="folkloreAccordion">
+                    {% for state, data in folklore.items() %}
+                    {% if data.examples %}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{ loop.index }}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse{{ loop.index }}">
+                                {{ state }} - {{ data.examples|length }} Folklore Categories
+                            </button>
+                        </h2>
+                        <div id="collapse{{ loop.index }}" class="accordion-collapse collapse"
+                             data-bs-parent="#folkloreAccordion">
+                            <div class="accordion-body">
+                                {% for category, examples in data.examples.items() %}
+                                <h5 class="mt-3">{{ category }}</h5>
+                                {% for example in examples[:3] %}
+                                <div class="card mb-2">
+                                    <div class="card-body">
+                                        <h6 class="card-subtitle mb-2 text-muted">{{ example.name }}</h6>
+                                        <p class="card-text"><em>"...{{ example.snippet }}..."</em></p>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Comparative Statistics -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h3>Comparative Statistics</h3>
+                <div id="statsChart"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Top Words Comparison -->
+<div class="row mt-4 mb-5">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h3>Most Common Words by State</h3>
+                <p class="text-muted">Top 20 most frequently used words (excluding common stop words)</p>
+
+                {% if word_freq %}
+                <div class="row">
+                    {% for state, words in word_freq.items() %}
+                    <div class="col-md-6 col-lg-4 mb-3">
+                        <h5>{{ state }}</h5>
+                        <div class="card">
+                            <div class="card-body">
+                                <ol class="mb-0" style="column-count: 2; font-size: 0.9rem;">
+                                    {% for word, count in words[:20] %}
+                                    <li>{{ word }} <span class="text-muted">({{ count }})</span></li>
+                                    {% endfor %}
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+const themesData = {{ themes | tojson | safe }};
+const folkloreData = {{ folklore | tojson | safe }};
+const statsData = {{ stats | tojson | safe }};
+
+// Theme Distribution Chart
+function createThemesChart() {
+    const states = Object.keys(themesData);
+    const allThemes = new Set();
+
+    // Collect all unique themes
+    states.forEach(state => {
+        Object.keys(themesData[state].themes).forEach(theme => allThemes.add(theme));
+    });
+
+    const traces = [];
+    states.forEach(state => {
+        const themeValues = [];
+        const themeLabels = [];
+
+        Array.from(allThemes).forEach(theme => {
+            const count = themesData[state].themes[theme] || 0;
+            if (count > 0) {
+                themeLabels.push(theme);
+                themeValues.push(count);
+            }
+        });
+
+        traces.push({
+            x: themeLabels,
+            y: themeValues,
+            name: state,
+            type: 'bar'
+        });
+    });
+
+    const layout = {
+        barmode: 'group',
+        height: 500,
+        xaxis: {
+            tickangle: -45,
+            automargin: true
+        },
+        yaxis: {
+            title: 'Frequency'
+        },
+        legend: {
+            orientation: 'h',
+            y: -0.3
+        }
+    };
+
+    Plotly.newPlot('themesChart', traces, layout);
+}
+
+// Folklore Distribution Chart
+function createFolkloreChart() {
+    const states = Object.keys(folkloreData);
+    const traces = [];
+
+    states.forEach(state => {
+        const categories = Object.keys(folkloreData[state].folklore_counts);
+        const values = Object.values(folkloreData[state].folklore_counts);
+
+        traces.push({
+            x: categories,
+            y: values,
+            name: state,
+            type: 'bar'
+        });
+    });
+
+    const layout = {
+        barmode: 'group',
+        height: 400,
+        xaxis: {
+            tickangle: -45,
+            automargin: true
+        },
+        yaxis: {
+            title: 'Frequency'
+        },
+        legend: {
+            orientation: 'h',
+            y: -0.3
+        }
+    };
+
+    Plotly.newPlot('folkloreChart', traces, layout);
+}
+
+// Comparative Statistics Chart
+function createStatsChart() {
+    const states = Object.keys(statsData);
+
+    const narrativeCountTrace = {
+        x: states,
+        y: states.map(s => statsData[s].narrative_count),
+        name: 'Number of Narratives',
+        type: 'bar',
+        marker: { color: '#3498db' }
+    };
+
+    const avgLengthTrace = {
+        x: states,
+        y: states.map(s => statsData[s].avg_narrative_length),
+        name: 'Avg. Narrative Length (words)',
+        type: 'bar',
+        marker: { color: '#e74c3c' },
+        yaxis: 'y2'
+    };
+
+    const layout = {
+        height: 400,
+        yaxis: {
+            title: 'Number of Narratives',
+            side: 'left'
+        },
+        yaxis2: {
+            title: 'Avg. Words per Narrative',
+            overlaying: 'y',
+            side: 'right'
+        },
+        legend: {
+            orientation: 'h',
+            y: -0.2
+        }
+    };
+
+    Plotly.newPlot('statsChart', [narrativeCountTrace, avgLengthTrace], layout);
+}
+
+// Create all charts
+createThemesChart();
+createFolkloreChart();
+createStatsChart();
+</script>
+{% endblock %}

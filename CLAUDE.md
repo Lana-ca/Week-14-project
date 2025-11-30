@@ -4,44 +4,137 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This repository contains historical documents from Project Gutenberg - specifically, WPA Federal Writers' Project slave narratives from the 1930s. These are primary source materials consisting of interviews with formerly enslaved people conducted during the Great Depression.
+This is a Python-based web application for analyzing and comparing WPA Federal Writers' Project slave narratives from the 1930s. The project consists of:
 
-## Repository Contents
+1. **Analysis Pipeline**: Python scripts that parse historical text files and extract themes, folklore, and statistical data
+2. **Web Application**: Flask-based interface for browsing narratives and viewing comparative analysis
+3. **Historical Documents**: Five Project Gutenberg text files containing slave narratives from Georgia, Florida, Missouri, Texas, and South Carolina
 
-The repository contains text files of slave narrative collections from various U.S. states:
+## Project Architecture
 
-- **GEORGIA NARRATIVES PART 1.txt** - Volume IV, Georgia narratives
-- **Volume III, Florida Narratives.txt** - Florida narratives
-- **for the State of Missouri.txt** - Missouri narratives
-- **Slave Narratives_ A Folk History of Slavery in the United States from Interviews with Former Slaves, Volume XVI, Texas Narratives, Part 3.txt** - Texas narratives, Part 3
-- **Untitled document.txt** - South Carolina narratives, Part 4
+### Analysis Pipeline (src/)
 
-## Document Structure
+The analysis workflow follows this sequence:
 
-Each file follows the Project Gutenberg eBook format:
-- Header with Project Gutenberg license and metadata
-- Title, author (U.S. Work Projects Administration), and release date
-- Main content containing transcribed interviews
+1. **parser.py** - Parses Project Gutenberg text files to extract individual narratives with metadata (name, age, address, text)
+2. **analysis.py** - NarrativeAnalyzer class performs:
+   - Theme detection using keyword matching (10 major themes)
+   - Folklore extraction (6 categories: ghost stories, conjure/magic, supernatural beliefs, folk medicine, songs/music, tales)
+   - Word frequency analysis with stop word filtering
+   - Comparative statistics across states
+3. **analyze_narratives.py** - Main script that orchestrates the pipeline and outputs JSON files to data/
 
-## Working with These Files
+### Web Application (webapp/)
 
-These are historical primary source documents that should be:
-- Treated as read-only archival material unless explicitly directed to process or analyze them
-- Handled with awareness of their historical and cultural significance
-- Recognized as containing period-specific language and perspectives
+Flask application with three main routes:
 
-## File Format
+- **/** (index.html) - Overview with summary statistics for each state
+- **/browse** (browse.html) - Interactive narrative browser with filtering by state/name and sorting options
+- **/compare** (compare.html) - Comparative visualizations using Plotly.js:
+  - Theme distribution bar charts
+  - Folklore category comparisons
+  - Statistical comparisons (narrative counts, avg lengths)
+  - Top word frequencies by state
 
-- All files are plain text (.txt) format
-- UTF-8 encoding with BOM (﻿) at the start
-- No code, build system, or development tooling required
-- No testing or linting infrastructure
+The app loads pre-generated JSON files from data/ (no runtime analysis).
 
-## Typical Tasks
+## Common Commands
 
-When working with this repository, common requests may include:
-- Analyzing or extracting information from the narratives
-- Organizing or categorizing the content
-- Creating summaries or indices
-- Converting formats or restructuring data
-- Text processing and analysis
+### Setup
+
+```bash
+# Create virtual environment
+python -m venv venv
+
+# Activate virtual environment
+source venv/bin/activate  # Linux/Mac
+venv\Scripts\activate     # Windows
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+### Running Analysis
+
+```bash
+# Parse narratives and generate analysis data
+python src/analyze_narratives.py
+```
+
+This creates JSON files in data/:
+- narratives.json (summaries with text previews)
+- narratives_full.json (complete narrative texts)
+- themes.json (theme frequency by state)
+- folklore.json (folklore categories and examples)
+- word_frequencies.json (top 50 words per state)
+- comparative_stats.json (statistics for each state)
+
+### Running Web Application
+
+```bash
+# Development server (local only)
+python webapp/app.py
+
+# Production server
+gunicorn webapp.app:app
+```
+
+Access at http://localhost:5000
+
+## Development Notes
+
+### Adding New Analysis Features
+
+To add new themes or folklore categories:
+
+1. Edit `src/analysis.py`
+2. Add keywords to `THEME_KEYWORDS` or `FOLKLORE_PATTERNS` dictionaries
+3. Re-run `python src/analyze_narratives.py` to regenerate data files
+4. Update templates if new visualizations are needed
+
+### Modifying Narrative Parsing
+
+If narrative file structure differs or new files are added:
+
+1. Update `parse_narrative_file()` in `src/parser.py`
+2. Adjust regex patterns for header matching
+3. Update `get_all_narratives()` file mapping
+4. Re-run analysis script
+
+### Deployment
+
+The application requires two steps for deployment:
+
+1. **Build step**: Run `python src/analyze_narratives.py` to generate data/
+2. **Runtime**: Start Flask app with `gunicorn webapp.app:app`
+
+See README.md for platform-specific deployment instructions (Render, Heroku, PythonAnywhere).
+
+## File Organization
+
+```
+narratives/          - Original .txt files (read-only historical documents)
+src/                 - Analysis Python modules
+webapp/              - Flask application
+  app.py            - Routes and API endpoints
+  templates/        - Jinja2 HTML templates
+  static/           - Currently unused (using CDN for Bootstrap/Plotly)
+data/               - Generated JSON files (gitignored, created by analysis script)
+```
+
+## Key Design Decisions
+
+1. **Pre-computation**: Analysis runs once to generate JSON files rather than on-demand processing
+2. **No database**: Uses JSON files for simplicity and portability
+3. **CDN dependencies**: Bootstrap and Plotly loaded from CDN (no local static files)
+4. **No testing framework**: This is a data analysis tool, not production software
+5. **Simple theme detection**: Keyword-based matching rather than NLP/ML for transparency and interpretability
+
+## Historical Context
+
+These are sensitive historical documents containing:
+- First-person accounts of slavery
+- Period-specific language and dialect transcriptions
+- References to violence, family separation, and trauma
+
+Handle with awareness of their cultural and historical significance.

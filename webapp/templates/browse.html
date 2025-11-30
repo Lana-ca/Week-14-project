@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+
+{% block title %}Browse Narratives{% endblock %}
+
+{% block content %}
+<div class="row mt-4">
+    <div class="col-12">
+        <h1>Browse Narratives</h1>
+        <p class="lead">Explore individual slave narratives from the WPA collection.</p>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h5>Filter Options</h5>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="stateFilter" class="form-label">State</label>
+                        <select class="form-select" id="stateFilter">
+                            <option value="">All States</option>
+                            {% if narratives %}
+                                {% for state in narratives.keys() %}
+                                <option value="{{ state }}">{{ state }}</option>
+                                {% endfor %}
+                            {% endif %}
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="searchInput" class="form-label">Search by Name</label>
+                        <input type="text" class="form-control" id="searchInput" placeholder="Enter name...">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="sortSelect" class="form-label">Sort By</label>
+                        <select class="form-select" id="sortSelect">
+                            <option value="name">Name (A-Z)</option>
+                            <option value="length-desc">Length (Longest First)</option>
+                            <option value="length-asc">Length (Shortest First)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-12">
+        <div id="narrativesContainer">
+            <!-- Narratives will be loaded here by JavaScript -->
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+const narrativesData = {{ narratives | tojson | safe }};
+let displayedNarratives = [];
+
+function getAllNarratives() {
+    const all = [];
+    for (const [state, data] of Object.entries(narrativesData)) {
+        data.narratives.forEach(narrative => {
+            all.push({
+                ...narrative,
+                state: state
+            });
+        });
+    }
+    return all;
+}
+
+function filterAndDisplayNarratives() {
+    const stateFilter = document.getElementById('stateFilter').value;
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+    const sortBy = document.getElementById('sortSelect').value;
+
+    let filtered = getAllNarratives();
+
+    // Apply state filter
+    if (stateFilter) {
+        filtered = filtered.filter(n => n.state === stateFilter);
+    }
+
+    // Apply search filter
+    if (searchTerm) {
+        filtered = filtered.filter(n => n.name.toLowerCase().includes(searchTerm));
+    }
+
+    // Apply sorting
+    if (sortBy === 'name') {
+        filtered.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortBy === 'length-desc') {
+        filtered.sort((a, b) => b.word_count - a.word_count);
+    } else if (sortBy === 'length-asc') {
+        filtered.sort((a, b) => a.word_count - b.word_count);
+    }
+
+    displayNarratives(filtered);
+}
+
+function displayNarratives(narratives) {
+    const container = document.getElementById('narrativesContainer');
+
+    if (narratives.length === 0) {
+        container.innerHTML = `
+            <div class="alert alert-info">
+                No narratives found matching your filters.
+            </div>
+        `;
+        return;
+    }
+
+    container.innerHTML = `
+        <div class="alert alert-success">
+            Found ${narratives.length} narrative${narratives.length !== 1 ? 's' : ''}
+        </div>
+    `;
+
+    narratives.forEach((narrative, index) => {
+        const card = document.createElement('div');
+        card.className = 'card narrative-card mb-3';
+        card.innerHTML = `
+            <div class="card-body">
+                <h4 class="card-title">${narrative.name}</h4>
+                <p class="text-muted mb-2">
+                    <strong>${narrative.state}</strong> |
+                    Age: ${narrative.age} |
+                    ${narrative.address} |
+                    ${narrative.word_count.toLocaleString()} words
+                </p>
+                <div class="narrative-text">
+                    ${narrative.text.substring(0, 800)}${narrative.text.length > 800 ? '...' : ''}
+                </div>
+                ${narrative.text.length > 800 ? `
+                    <button class="btn btn-sm btn-outline-primary mt-2" onclick="showFullText(${index})">
+                        Read More
+                    </button>
+                ` : ''}
+            </div>
+        `;
+        container.appendChild(card);
+    });
+
+    displayedNarratives = narratives;
+}
+
+function showFullText(index) {
+    const narrative = displayedNarratives[index];
+    const modalHtml = `
+        <div class="modal fade" id="narrativeModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">${narrative.name}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-muted">
+                            <strong>${narrative.state}</strong> | Age: ${narrative.age} | ${narrative.address}
+                        </p>
+                        <div class="narrative-text">
+                            ${narrative.text}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Remove existing modal if any
+    const existingModal = document.getElementById('narrativeModal');
+    if (existingModal) {
+        existingModal.remove();
+    }
+
+    // Add new modal
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+
+    // Show modal
+    const modal = new bootstrap.Modal(document.getElementById('narrativeModal'));
+    modal.show();
+}
+
+// Event listeners
+document.getElementById('stateFilter').addEventListener('change', filterAndDisplayNarratives);
+document.getElementById('searchInput').addEventListener('input', filterAndDisplayNarratives);
+document.getElementById('sortSelect').addEventListener('change', filterAndDisplayNarratives);
+
+// Initial display
+filterAndDisplayNarratives();
+</script>
+{% endblock %}
