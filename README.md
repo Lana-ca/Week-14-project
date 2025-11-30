@@ -1,14 +1,17 @@
 # WPA Slave Narratives Comparative Analysis
 
-A web-based tool for analyzing and comparing historical slave narratives from the WPA Federal Writers' Project (1936-1938). This project provides comparative analysis of themes, folklore, and textual patterns across narratives from five states: Georgia, Florida, Missouri, Texas, and South Carolina.
+A static website for analyzing and comparing historical slave narratives from the WPA Federal Writers' Project (1936-1938). This project provides comparative analysis of themes, folklore, and textual patterns across narratives from five states: Georgia, Florida, Missouri, Texas, and South Carolina.
+
+**✨ No server required!** This is a pure HTML/CSS/JavaScript website that can be opened directly in your browser or hosted on any static web hosting service.
 
 ## Features
 
 - **Browse Narratives**: Read individual narratives with filtering by state, name, and length
 - **Comparative Analysis**: Compare theme distribution across states
 - **Folklore Extraction**: Identify and analyze folklore, ghost stories, conjure tales, and folk medicine references
-- **Interactive Visualizations**: Explore data through interactive charts and statistics
+- **Interactive Visualizations**: Explore data through interactive Plotly charts
 - **Word Frequency Analysis**: See the most common words used in each state's narratives
+- **Works Offline**: Once loaded, everything runs in your browser
 
 ## Setup
 
@@ -48,85 +51,73 @@ python src/analyze_narratives.py
 
 This will parse all narrative files and create JSON data files in the `data/` directory.
 
-5. Start the web application:
-```bash
-python webapp/app.py
-```
+5. View the website:
 
-6. Open your browser and navigate to:
-```
-http://localhost:5000
+**Option A: Direct file opening (quick preview)**
+- Simply double-click `index.html` to open it in your browser
+- Note: Some browsers may block JSON loading due to CORS
+
+**Option B: Using a local server (recommended)**
+```bash
+# Python
+python -m http.server 8000
+
+# Then open http://localhost:8000 in your browser
 ```
 
 ## Project Structure
 
 ```
 Week-14-project/
+├── index.html           # Home page
+├── browse.html          # Browse narratives page
+├── compare.html         # Comparison visualizations page
 ├── narratives/          # Original text files from Project Gutenberg
-├── src/
-│   ├── parser.py       # Parses narrative files and extracts content
+├── src/                 # Python analysis scripts
+│   ├── parser.py       # Parses narrative files
 │   ├── analysis.py     # Analyzes themes and folklore
 │   └── analyze_narratives.py  # Main analysis script
-├── webapp/
-│   ├── app.py          # Flask application
-│   ├── templates/      # HTML templates
-│   └── static/         # CSS, JS (currently using CDN)
-├── data/               # Generated JSON analysis files (created by script)
-├── requirements.txt    # Python dependencies
-└── README.md
+├── data/                # Generated JSON files (created by analysis script)
+├── webapp/              # Flask version (legacy, not used)
+└── requirements.txt     # Python dependencies for analysis
 ```
 
-## Deployment
+## Deployment to Static Hosting
 
-### Deploy to Render
+Since this is a static website, deployment is extremely simple!
 
-1. Create a `Procfile` in the project root:
-```
-web: gunicorn webapp.app:app
-```
+### GitHub Pages (Free)
 
-2. Push your code to GitHub
+1. Run analysis to generate data files:
+   ```bash
+   python src/analyze_narratives.py
+   ```
 
-3. Create a new Web Service on [Render](https://render.com):
-   - Connect your GitHub repository
-   - Set build command: `pip install -r requirements.txt && python src/analyze_narratives.py`
-   - Set start command: `gunicorn webapp.app:app`
-   - Set environment: Python 3
+2. Commit the data files (remove `data/` from .gitignore or use `git add -f data/`)
 
-### Deploy to Heroku
+3. Push to GitHub
 
-1. Install the Heroku CLI and login:
-```bash
-heroku login
-```
+4. Go to repository Settings → Pages
+   - Select your branch (e.g., main)
+   - Select root directory
+   - Save
 
-2. Create a new Heroku app:
-```bash
-heroku create your-app-name
-```
+5. Your site will be live at `https://yourusername.github.io/repository-name/`
 
-3. Create a `Procfile` in the project root:
-```
-web: gunicorn webapp.app:app
-```
+### Netlify (Free)
 
-4. Deploy:
-```bash
-git push heroku main
-```
+1. Generate data files: `python src/analyze_narratives.py`
+2. Drag and drop the entire project folder to Netlify
+3. Done! Your site is live
 
-5. Run the analysis script on Heroku:
-```bash
-heroku run python src/analyze_narratives.py
-```
+### Vercel (Free)
 
-### Deploy to PythonAnywhere
+1. Generate data files: `python src/analyze_narratives.py`
+2. Install Vercel CLI: `npm i -g vercel`
+3. Run `vercel` in the project directory
+4. Done!
 
-1. Upload your code to PythonAnywhere
-2. Create a virtual environment and install dependencies
-3. Run the analysis script: `python src/analyze_narratives.py`
-4. Configure a web app pointing to `webapp/app.py`
-5. Set the WSGI configuration to use Flask
+**Important**: Make sure to run `python src/analyze_narratives.py` before deploying to generate the required data files in the `data/` directory.
 
 ## Data Sources
 

@@ -4,10 +4,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This is a Python-based web application for analyzing and comparing WPA Federal Writers' Project slave narratives from the 1930s. The project consists of:
+This is a static website with Python analysis tools for exploring WPA Federal Writers' Project slave narratives from the 1930s. The project consists of:
 
 1. **Analysis Pipeline**: Python scripts that parse historical text files and extract themes, folklore, and statistical data
-2. **Web Application**: Flask-based interface for browsing narratives and viewing comparative analysis
+2. **Static Website**: HTML/CSS/JavaScript interface for browsing narratives and viewing comparative analysis (no server required)
 3. **Historical Documents**: Five Project Gutenberg text files containing slave narratives from Georgia, Florida, Missouri, Texas, and South Carolina
 
 ## Project Architecture
@@ -24,19 +24,19 @@ The analysis workflow follows this sequence:
    - Comparative statistics across states
 3. **analyze_narratives.py** - Main script that orchestrates the pipeline and outputs JSON files to data/
 
-### Web Application (webapp/)
+### Static Website (HTML files in root)
 
-Flask application with three main routes:
+Three standalone HTML pages that can be opened directly in a browser:
 
-- **/** (index.html) - Overview with summary statistics for each state
-- **/browse** (browse.html) - Interactive narrative browser with filtering by state/name and sorting options
-- **/compare** (compare.html) - Comparative visualizations using Plotly.js:
+- **index.html** - Overview with summary statistics for each state
+- **browse.html** - Interactive narrative browser with filtering by state/name and sorting options
+- **compare.html** - Comparative visualizations using Plotly.js:
   - Theme distribution bar charts
   - Folklore category comparisons
   - Statistical comparisons (narrative counts, avg lengths)
   - Top word frequencies by state
 
-The app loads pre-generated JSON files from data/ (no runtime analysis).
+All pages load pre-generated JSON files from data/ using JavaScript fetch API. No server required for local viewing (files can be opened directly), though a simple HTTP server is recommended for full functionality.
 
 ## Common Commands
 
@@ -69,17 +69,29 @@ This creates JSON files in data/:
 - word_frequencies.json (top 50 words per state)
 - comparative_stats.json (statistics for each state)
 
-### Running Web Application
+### Viewing the Website
 
+**Option 1: Direct file opening (quick preview)**
+- Simply open `index.html` in your web browser
+- Note: Some browsers may block fetch() requests for local files due to CORS policy
+
+**Option 2: Simple HTTP server (recommended)**
 ```bash
-# Development server (local only)
-python webapp/app.py
+# Using Python (recommended)
+python -m http.server 8000
 
-# Production server
-gunicorn webapp.app:app
+# Or using PHP
+php -S localhost:8000
+
+# Or using Node.js (if installed)
+npx http-server -p 8000
 ```
 
-Access at http://localhost:5000
+Then access at http://localhost:8000
+
+**Option 3: Deploy to static hosting**
+- Upload all files to GitHub Pages, Netlify, Vercel, or any static host
+- No build step required, just upload the directory
 
 ## Development Notes
 
@@ -108,32 +120,43 @@ The core analysis and visualization architecture is complete and functional once
 
 ### Deployment
 
-The application requires two steps for deployment:
+**For static hosting (GitHub Pages, Netlify, Vercel):**
 
 1. **Build step**: Run `python src/analyze_narratives.py` to generate data/
-2. **Runtime**: Start Flask app with `gunicorn webapp.app:app`
+2. **Commit data files**: Remove `data/` from .gitignore or manually upload data/ folder
+3. **Deploy**: Push to your static hosting service (no build command needed)
 
-See README.md for platform-specific deployment instructions (Render, Heroku, PythonAnywhere).
+**For GitHub Pages:**
+- Go to repository Settings → Pages
+- Select branch (e.g., main)
+- Set root directory as source
+- Site will be live at `https://username.github.io/repository-name/`
+
+No server-side code - everything runs in the browser!
 
 ## File Organization
 
 ```
 narratives/          - Original .txt files (read-only historical documents)
-src/                 - Analysis Python modules
-webapp/              - Flask application
-  app.py            - Routes and API endpoints
-  templates/        - Jinja2 HTML templates
-  static/           - Currently unused (using CDN for Bootstrap/Plotly)
-data/               - Generated JSON files (gitignored, created by analysis script)
+src/                 - Analysis Python modules (parser, analysis, main script)
+webapp/              - Flask application (legacy - not used in static version)
+index.html           - Home page (static)
+browse.html          - Browse narratives page (static)
+compare.html         - Comparison visualizations page (static)
+data/                - Generated JSON files (gitignored by default, created by analysis script)
 ```
+
+**Note**: The webapp/ directory contains the original Flask version but is no longer used. The static HTML files in the root directory provide the same functionality without requiring a server.
 
 ## Key Design Decisions
 
-1. **Pre-computation**: Analysis runs once to generate JSON files rather than on-demand processing
-2. **No database**: Uses JSON files for simplicity and portability
-3. **CDN dependencies**: Bootstrap and Plotly loaded from CDN (no local static files)
-4. **No testing framework**: This is a data analysis tool, not production software
-5. **Simple theme detection**: Keyword-based matching rather than NLP/ML for transparency and interpretability
+1. **Static website**: Pure HTML/CSS/JavaScript - no server required, works anywhere
+2. **Pre-computation**: Analysis runs once to generate JSON files rather than on-demand processing
+3. **No database**: Uses JSON files for simplicity and portability
+4. **CDN dependencies**: Bootstrap and Plotly loaded from CDN (no local static files needed)
+5. **No build process**: HTML files work as-is, no webpack/bundling required
+6. **No testing framework**: This is a data analysis tool, not production software
+7. **Simple theme detection**: Keyword-based matching rather than NLP/ML for transparency and interpretability
 
 ## Historical Context
 
