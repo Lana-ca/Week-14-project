@@ -106,14 +106,33 @@ To add new themes or folklore categories:
 
 ### Modifying Narrative Parsing
 
-**Known Issue**: The parser currently extracts Georgia narratives successfully (5 narratives, ~50K words), but Florida, Missouri, Texas, and South Carolina narratives have different text formats. The regex patterns in `parse_narrative_file()` need refinement to handle these state-specific formats.
+**CRITICAL KNOWN ISSUE**: The parser currently has a major bug where it groups all narratives under Georgia and often under a single person's name. In reality:
+- Each `.txt` file in `narratives/` contains stories from a **different state**
+- Each file contains stories from **many different people** (not just one)
+- The parser's regex patterns need significant refinement to correctly:
+  1. Identify individual narrative boundaries within each file
+  2. Extract each person's name, age, and address correctly
+  3. Associate narratives with the correct state
 
-To fix parsing for other states:
+**Current behavior**: Only Georgia narratives are extracted (~5 narratives, ~50K words). All other states show 0 narratives.
 
-1. Examine the text structure in `narratives/[state-file].txt`
-2. Update the narrative header regex pattern in `src/parser.py` (line ~34)
-3. Adjust the narrative start detection logic to match each state's format
-4. Test by running `python src/analyze_narratives.py` and verifying output counts
+**Root cause**: The regex pattern in `parse_narrative_file()` at `src/parser.py` line ~34 only matches the Georgia file format. Florida, Missouri, Texas, and South Carolina use different text formatting conventions.
+
+To fix parsing for all states:
+
+1. Examine the text structure in each `narratives/[state-file].txt`
+2. Identify the pattern for narrative headers in each state's format:
+   - Look for name, age, address patterns
+   - Find what marks the start/end of individual narratives
+   - Note any state-specific formatting differences
+3. Update the regex patterns in `src/parser.py`:
+   - Make header pattern more flexible OR create state-specific patterns
+   - Fix narrative boundary detection logic
+   - Ensure each narrative is correctly attributed to its state
+4. Test by running `python src/analyze_narratives.py` and verifying:
+   - Narrative counts for each state are > 0
+   - Individual names are correctly extracted (not grouped under one person)
+   - Text is properly segmented between different people's stories
 5. Update `get_all_narratives()` file mapping if adding new files
 
 The core analysis and visualization architecture is complete and functional once narratives are properly extracted.
