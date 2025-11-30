@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Slave Narratives Analysis{% endblock %}
+
+{% block content %}
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">WPA Slave Narratives Comparative Analysis</h1>
+                <p class="lead">
+                    Explore historical interviews with formerly enslaved people conducted during the 1930s
+                    as part of the Federal Writers' Project. This collection includes narratives from five states:
+                    Georgia, Florida, Missouri, Texas, and South Carolina.
+                </p>
+                <hr>
+                <p>
+                    Use this tool to browse individual narratives, compare themes across states,
+                    and discover folklore and folk tales unique to different regions.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if stats %}
+<div class="row mt-4">
+    <div class="col-12">
+        <h2>Collection Overview</h2>
+    </div>
+</div>
+
+<div class="row">
+    {% for state, data in stats.items() %}
+    <div class="col-md-6 col-lg-4 mb-3">
+        <div class="card stat-card">
+            <h3>{{ state }}</h3>
+            <div class="stat-number">{{ data.narrative_count }}</div>
+            <div class="stat-label">Narratives</div>
+            <hr>
+            <p class="mb-1"><strong>{{ "{:,}".format(data.total_words) }}</strong> total words</p>
+            <p class="mb-1"><strong>{{ "{:,.0f}".format(data.avg_narrative_length) }}</strong> avg. words/narrative</p>
+            <p class="mb-0"><small>Range: {{ data.shortest_narrative }} - {{ data.longest_narrative }} words</small></p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h3>Browse Narratives</h3>
+                <p>Read individual narratives and filter by state, name, or text length.</p>
+                <a href="/browse" class="btn btn-primary">Browse Now</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h3>Compare States</h3>
+                <p>Analyze theme distribution and folklore across different states.</p>
+                <a href="/compare" class="btn btn-primary">Compare Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h3>About This Project</h3>
+                <p>
+                    The Federal Writers' Project was a New Deal program that employed writers during
+                    the Great Depression. Between 1936 and 1938, project workers interviewed over
+                    2,300 formerly enslaved people across 17 states, creating an invaluable record
+                    of first-hand accounts of American slavery.
+                </p>
+                <p>
+                    This analysis tool provides comparative insights into the narratives, allowing
+                    researchers and interested readers to explore regional differences in themes,
+                    folklore, and storytelling patterns.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
