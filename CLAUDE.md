@@ -94,12 +94,17 @@ To add new themes or folklore categories:
 
 ### Modifying Narrative Parsing
 
-If narrative file structure differs or new files are added:
+**Known Issue**: The parser currently extracts Georgia narratives successfully (5 narratives, ~50K words), but Florida, Missouri, Texas, and South Carolina narratives have different text formats. The regex patterns in `parse_narrative_file()` need refinement to handle these state-specific formats.
 
-1. Update `parse_narrative_file()` in `src/parser.py`
-2. Adjust regex patterns for header matching
-3. Update `get_all_narratives()` file mapping
-4. Re-run analysis script
+To fix parsing for other states:
+
+1. Examine the text structure in `narratives/[state-file].txt`
+2. Update the narrative header regex pattern in `src/parser.py` (line ~34)
+3. Adjust the narrative start detection logic to match each state's format
+4. Test by running `python src/analyze_narratives.py` and verifying output counts
+5. Update `get_all_narratives()` file mapping if adding new files
+
+The core analysis and visualization architecture is complete and functional once narratives are properly extracted.
 
 ### Deployment
 
